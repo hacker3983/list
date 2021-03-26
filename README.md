@@ -27,6 +27,8 @@ int main() {
   for(int i=0;i<10;i++) {
     append(&list, (i)+1);
   }
+  printf("List before modified:\n");
+  print(list);
   removel(&list, 4); // removes the element 4
   print(list);
   release(&list);
