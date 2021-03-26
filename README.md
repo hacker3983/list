@@ -17,7 +17,7 @@ int main() {
   release(&list); // frees the memory that has been used
 }
 ```
-
+![Appending Elements](https://cdn.discordapp.com/attachments/709031059593101413/824836009665101834/unknown.png)
 
 * removing elements
 ```c
