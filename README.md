@@ -9,7 +9,7 @@ A list library for c, dynamically allocated array.
 int main() {
   struct list list;
   set(&list); // sets the startup options for the list
-  for(int i=10;i>0;i--) {
+  for(int i=11;i>0;i--) {
     append(&list, i);
   }
   print(list); // prints the list
