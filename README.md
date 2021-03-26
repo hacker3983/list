@@ -1,6 +1,7 @@
 # list
 A list library for c, dynamically allocated array.
 # Examples:
+* appending elements and printing
 ```c
 // appending elements to the list and printing
 #include <stdio.h>
@@ -16,6 +17,9 @@ int main() {
   release(&list); // frees the memory that has been used
 }
 ```
+
+
+* removing elements
 ```c
 // removing elements from the list
 #include <stdio.h>
