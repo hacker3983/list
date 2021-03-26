@@ -2,7 +2,9 @@
 A list library for c, dynamically allocated array.
 # Examples:
 ```c
-/*appending elements to the list*/
+/*
+appending elements to the list
+*/
 #include <stdio.h>
 #include <list/list.h>
 
