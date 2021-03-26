@@ -23,7 +23,7 @@ int main() {
 
 int main() {
   struct list list;
-  set(&list); // sets the startup options for the list
+  set(&list);
   for(int i=0;i<10;i++) {
     append(&list, (i)+1);
   }
