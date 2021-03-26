@@ -36,3 +36,4 @@ int main() {
   return 0;
 }
 ```
+![Removing Element](https://cdn.discordapp.com/attachments/709031059593101413/824833541551816724/unknown.png)
