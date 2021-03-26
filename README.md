@@ -4,7 +4,7 @@ A list library for c, dynamically allocated array.
 ```c
 // appending elements to the list and printing
 #include <stdio.h>
-#include <list/list.h>
+#include "list/list.h"
 
 int main() {
   struct list list;
@@ -19,7 +19,7 @@ int main() {
 ```c
 // removing elements from the list
 #include <stdio.h>
-#include <list/list.h>
+#include "list/list.h"
 
 int main() {
   struct list list;
