@@ -13,7 +13,7 @@ int main() {
     append(&list, i);
   }
   print(list); // prints the list
-  release(); // frees the memory that has been used
+  release(&list); // frees the memory that has been used
 }
 ```
 ```c
