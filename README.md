@@ -67,7 +67,7 @@ int main() {
 ```
 ![Counting elements](https://cdn.discordapp.com/attachments/795649348364926986/830837631490457621/unknown.png)
 * reverses the list
-```
+```c
 // reverse list
 #include <stdio.h>
 #include "list/list.h"
