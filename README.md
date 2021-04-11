@@ -93,7 +93,8 @@ int main() {
 	struct list list;
 	set(&list);
 	for(int i=1;i<10;i++) { append(&list, i); }
-	printf("Index of element 5 is %d\n", indexl(list, 5)); // returns index of element on error returns -1
+	// returns index of element if not found -1 is returned
+	printf("Index of element 5 is %d\n", indexl(list, 5));
 	release(&list);
 	return 0;
 }
