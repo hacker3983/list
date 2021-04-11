@@ -10,12 +10,12 @@ struct list {
 };
 // sets the size of array
 void set(struct list* list) {
-	list->osize = 10;
+	list->osize = 1;
 	list->size = 0;
 }
 // allocates memory
 void allocate(struct list* list) {
-	list->arr = malloc(list->osize * sizeof(int));
+	list->arr = (int*)malloc(list->osize * sizeof(int));
 	list->malloced = 1;
 }
 // appends an element
@@ -23,9 +23,9 @@ void append(struct list* list, int value) {
 	if(list->size == 0) {
 		allocate(list);
 	}
-	list->osize += 10;
+	list->osize++;
 	list->size++;
-	list->arr = realloc(list->arr, list->osize*sizeof(int));
+	list->arr = (int*)realloc(list->arr, list->osize*sizeof(int));
 	list->arr[list->size-1] = value;
 }
 // removes element
@@ -41,11 +41,12 @@ void removel(struct list* list, int x) {
 			append(&list2, list->arr[i]);
 		}
 	}
-	list->arr = malloc(list2.osize*sizeof(int));
-	set(list);
-	for(int i=0;i<list2.size;i++)
-		append(list, list2.arr[i]);
+	free(list->arr);
+	list->size = list2.size;
+	list->osize = list2.osize;
+	list->arr = list2.arr;
 }
+
 // prints out elements
 void print(struct list list) {
 	if(list.size == 0) {
@@ -57,6 +58,36 @@ void print(struct list list) {
 	}
 }
 
+// returns the index position of a given element
+int indexl(struct list list, int x) {
+	for (int i=0;i<list.size;i++) {
+		if(list.arr[i] == x) {
+			return i;
+		}
+	}
+	return -1;
+}
+// counts the amount of time a given element is in the list
+int count(struct list list, int x) {
+	int amount = 0;
+	for (int i=0;i<list.size;i++) {
+		if(list.arr[i] == x) amount++;
+	}
+	return amount;
+}
+// reverses the list
+void reverse(struct list* list) {
+	struct list list2;
+	set(&list2);
+	for(int i=list->size-1;i>=0;i--) {
+		append(&list2, list->arr[i]);
+	}
+	free(list->arr);
+	list->size = list2.size;
+	list->osize = list2.osize;
+	list->arr = list2.arr;
+}
+// frees memory and resets everything
 void release(struct list* list) {
 	list->osize = 0;
 	list->size = 0;
