@@ -16,7 +16,6 @@ void string_init(string_t* string) {
 	set(&string->list[string->size]);
 	string->isinit = 1;
 }
-// appends a character to the list
 void string_pushchar(string_t* string, char c) {
 	if(string->isinit == 1) {
 		if(string->size == 0) {
@@ -49,14 +48,13 @@ void string_clear(string_t* string) {
 // compares a given string in the list
 bool string_compare(string_t* string, char* buff) {
 	if(string->isinit == 1) {
-		int x=0, c, size = string->size;
+		int x=0, c, list_size, size = string->size;
 		if(size == 0) {
 			size = string->size;
-		}
-		else { size = string->size-1; }
-		int list_size = string->list[size].size;
-		if(string->isinit != 1) {
-			return false;
+			list_size = string->list[size].size;
+		} else {
+			size = string->size-1;
+			list_size = string->list[size].size;
 		}
 		if(buff == NULL) {
 			return false;
@@ -65,7 +63,7 @@ bool string_compare(string_t* string, char* buff) {
 			return false;
 		}
 		for(int i=0;i<list_size;i++) {
-			c = string->list[string->size-1].arr[i];
+			c = string->list[size].arr[i];
 			if(buff[x] != c) {
 				return false;
 			}
@@ -75,6 +73,7 @@ bool string_compare(string_t* string, char* buff) {
 	}
 	return false;
 }
+
 // finds the index position of a given string
 int string_index(string_t string, char* buff) {
 	if(string.isinit == 1) {
@@ -94,6 +93,23 @@ int string_index(string_t string, char* buff) {
 		}
 	}
 	return -1;
+}
+// count the amount of time a given string is in the list
+int string_count(string_t string, const char* str) {
+	int amount = 0;
+	if(string.isinit == 1) {
+		for(int i=0;i<string.size;i++) {
+			if(strlen(str) == string.list[i].size) {
+				int l_size = string.list[i].size, failed=0, idx=0;
+				for(int x=0;x<l_size;x++) {
+					if(str[idx] != string.list[i].arr[x]) { failed = 1; break; }
+					idx++;
+				}
+				if(failed == 0) amount++;
+			}
+		}
+	}
+	return amount;
 }
 // print the list
 void string_print(string_t string) {
