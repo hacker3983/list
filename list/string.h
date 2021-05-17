@@ -137,9 +137,9 @@ void string_print(string_t string) {
 void string_free(string_t* string) {
 	if(string->isinit == 1) {
 		string->isinit = 0;
+		for(int i=0;i<string->size;i++) { release(&string->list[i]); }
 		string->size = 0;
 		string->osize = 0;
-		for(int i=0;i<string->size;i++) { release(&string->list[i]); }
 		if(string->size == 0) {
 			release(&string->list[string->size]);
 		}
