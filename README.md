@@ -2,6 +2,8 @@
 A list library for c, dynamically allocated array.
 # Whats new
 * Fixed memory leaks
+* New list library string
+* Fixed string library crashing on windows
 * Now works for C++
 * int count(struct list list, int x) - counts the occurence of a given element
 * void reversel(struct list* list) - reverses the list
