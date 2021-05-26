@@ -23,6 +23,7 @@ void string_pushchar(string_t* string, char c) {
 			string->size++;
 			string->osize++;
 			string->list = realloc(string->list, string->osize*sizeof(struct list));
+			set(&string->list[string->osize-1]);
 		} else {
 			append(&string->list[string->size-1], c);
 		}
