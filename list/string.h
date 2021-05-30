@@ -16,6 +16,7 @@ void string_init(string_t* string) {
 	set(&string->list[string->size]);
 	string->isinit = 1;
 }
+// appends a character to the list
 void string_pushchar(string_t* string, char c) {
 	if(string->isinit == 1) {
 		if(string->size == 0) {
@@ -41,6 +42,7 @@ void string_pushback(string_t* string, char* buff) {
 		set(&string->list[string->osize-1]);
 	}
 }
+// clear the list
 void string_clear(string_t* string) {
 	if(string->isinit == 1) {
 		release(&string->list[string->size-1]);
