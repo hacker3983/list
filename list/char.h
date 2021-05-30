@@ -22,7 +22,10 @@ bool char_push(char_t* mychar, char c) {
 		mychar->buff[mychar->idx] = c;
 		mychar->size++;
 		mychar->idx++;
-		mychar->buff = realloc(mychar->buff, mychar->size*sizeof(char*));
+		char* ptr = mychar->buff;
+		mychar->buff = calloc(mychar->size, sizeof(char*));
+		strcpy(mychar->buff, ptr);
+		free(ptr);
 		return true;
 	}
 	return false;
@@ -31,9 +34,12 @@ bool char_push(char_t* mychar, char c) {
 bool char_pushptr(char_t* mychar, char* buff) {
 	if(buff != NULL && mychar->init) {
 		mychar->size += strlen(buff);
-		mychar->buff = realloc(mychar->buff, mychar->size*sizeof(char*));
+		char* ptr = mychar->buff;
+		mychar->buff = calloc(mychar->size, sizeof(char*));
+		strcpy(mychar->buff, ptr);
 		strcat(mychar->buff, buff);
-		mychar->idx += mychar->size-1;
+		mychar->idx += strlen(buff);
+		free(ptr);
 		return true;
 	}
 	return false;
