@@ -1,3 +1,5 @@
+#ifndef _LIST_H
+#define _LIST_H
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -96,3 +98,4 @@ void release(struct list* list) {
 		free(list->arr);
 	}
 }
+#endif
