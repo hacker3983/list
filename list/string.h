@@ -1,3 +1,5 @@
+#ifndef _LIST_STRING
+#define _LIST_STRING
 #include <stdlib.h>
 #include <string.h>
 #include "list.h"
@@ -149,3 +151,4 @@ void string_free(string_t* string) {
 		free(string->list);
 	}
 }
+#endif
