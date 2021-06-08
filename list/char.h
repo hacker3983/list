@@ -1,3 +1,5 @@
+#ifndef _CHAR_H
+#define _CHAR_H
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
@@ -53,3 +55,4 @@ void char_free(char_t* mychar) {
 		mychar->init = 0;
 	}
 }
+#endif
