@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 typedef struct char_s {
 	char* buff;
@@ -46,6 +47,7 @@ bool char_pushptr(char_t* mychar, char* buff) {
 	}
 	return false;
 }
+// reverse the string in char_t structure
 void char_reverse(char_t* mychar) {
 	char_t list;
 	char_init(&list);
@@ -57,6 +59,24 @@ void char_reverse(char_t* mychar) {
 	mychar->length = list.length;
 	mychar->buff = list.buff;
 }
+// Exchanges the contents of the char_t with another
+void char_swap(char_t* a, char_t* b) {
+	char_t temp, temp2;
+	char_init(&temp);
+	char_init(&temp2);
+	char_pushptr(&temp, a->buff);
+	char_pushptr(&temp2, b->buff);
+	free(b->buff);
+	free(a->buff);
+	b->buff = temp.buff;
+	b->size = temp.size;
+	b->length = temp.length;
+
+	a->buff = temp2.buff;
+	a->size = temp2.size;
+	a->length = temp2.length;
+}
+
 // frees memory and resets everything
 void char_free(char_t* mychar) {
 	if(mychar->init == 1) {
