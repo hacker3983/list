@@ -1,5 +1,6 @@
 #ifndef _LIST_STRING
 #define _LIST_STRING
+#include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
 #include "list.h"
@@ -44,6 +45,38 @@ void string_pushback(string_t* string, char* buff) {
 		set(&string->list[string->osize-1]);
 	}
 }
+
+// convert a string to all lowercase return a pointer
+char* string_tolower(char* string) {
+	size_t length = strlen(string);
+	char* low = calloc(length, sizeof(char*));
+	for(int i=0;i<length;i++) {
+		low[i] = tolower(string[i]);
+	}
+	return low;
+}
+
+// convert a string all capital letters return a pointer
+char* string_toupper(char* string) {
+	size_t length = strlen(string);
+	char* upper = calloc(length, sizeof(char*));
+	for(int i=0;i<length;i++) {
+		upper[i] = toupper(string[i]);
+	}
+	return upper;
+}
+
+// capitalize a string by returning a pointer
+char* string_capitalize(char* string) {
+	size_t length = strlen(string);
+	char* cap = calloc(strlen(string), sizeof(char*));
+	cap[0] = toupper(string[0]);
+	for(int i=1;i<length;i++) {
+		cap[i] = string[i];
+	}
+	return cap;
+}
+
 // clear the list
 void string_clear(string_t* string) {
 	if(string->isinit == 1) {
