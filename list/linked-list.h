@@ -100,10 +100,15 @@ void linked_remove(linked_t** list, int x) {
 
 // prints out the linked list
 void linked_print(linked_t* list) {
+	printf("[");
 	while(list != NULL) {
-		printf("%d\n", list->data);
+		printf("%d", list->data);
+		if(list->next != NULL) {
+			printf(", ");
+		}
 		list = list->next;
 	}
+	printf("]\n");
 }
 // frees memory allocated by the linked list
 void linked_free(linked_t* list) {

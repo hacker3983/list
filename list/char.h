@@ -1,5 +1,6 @@
 #ifndef _CHAR_H
 #define _CHAR_H
+#include <stdarg.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,10 +8,16 @@
 
 typedef struct char_s {
 	char* buff;
-	size_t size;
-	int length;
+	size_t size, length;
 	int init;
 } char_t;
+void char_init(char_t* mychar);
+bool char_push(char_t* mychar, char c);
+bool char_pushptr(char_t* mychar, char* buff);
+void char_pushf(char_t* mychar, const char* format, ...);
+void char_reverse(char_t* mychar);
+void char_swap(char_t* a, char_t* b);
+void char_free(char_t* mychar);
 
 // initialize char_t structure
 void char_init(char_t* mychar) {
@@ -46,6 +53,43 @@ bool char_pushptr(char_t* mychar, char* buff) {
 		return true;
 	}
 	return false;
+}
+// push a format string on to the structure
+void char_pushf(char_t* mychar, const char* format, ...) {
+        size_t i=0;
+        va_list varg;
+        va_start(varg, format);
+        while(format[i]) {
+                int num = 0;
+                size_t bignum;
+                if(format[i] == '%') {
+                        i++;
+                        switch(format[i]) {
+                                case 'd': {
+                                        char_t temp;
+                                        char_init(&temp);
+                                        num = va_arg(varg, int);
+                                        while(num != 0) {
+                                                char_push(&temp, (num % 10)+'0');
+                                                num /= 10;
+                                        }
+                                        char_reverse(&temp);
+                                        char_pushptr(mychar, temp.buff);
+                                        char_free(&temp);
+                                        break;
+                                } case 's':
+                                        char_pushptr(mychar, va_arg(varg, char*));
+                                        break;
+                                case 'c':
+                                        char_push(mychar, (char)va_arg(varg, int));
+                                        break;
+                        }
+                } else {
+                        char_push(mychar, format[i]);
+                }
+                i++;
+        }
+        va_end(varg);
 }
 // reverse the string in char_t structure
 void char_reverse(char_t* mychar) {
