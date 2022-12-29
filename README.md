@@ -37,7 +37,7 @@ int main() {
   struct list list;
   set(&list);
   for(int i=0;i<10;i++) {
-    append(&list, (i)+1);
+    append(&list, i+1);
   }
   printf("List before element has been removed:\n");
   print(list);
@@ -77,7 +77,7 @@ int main() {
 int main() {
 	struct list list;
 	set(&list);
-	for(int i=0;i<10;i++) { append(&list, i+i+1+1); }
+	for(int i=0;i<10;i++) { append(&list, (i+1) * 2); }
 	reverse(&list); // reverse the list
 	print(list);
 	release(&list);
